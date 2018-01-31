@@ -1,4 +1,5 @@
 require "ynab_api/configuration"
+require "ynab_api/connection"
 require "ynab_api/version"
 
 module YnabApi
