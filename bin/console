@@ -8,5 +8,8 @@ require "ynab_api"
 
 Dotenv.load!
 
+YnabApi.configure do |c|
+  c.api_key = ENV['YNAB_API_KEY']
+end
 
 Pry.start
