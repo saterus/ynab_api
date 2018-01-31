@@ -19,6 +19,11 @@ module YnabApi
         @accounts ||= Endpoint::Accounts.new(id).get
       end
 
+      def category_groups(reload = false)
+        @category_groups = nil if reload
+        @category_groups ||= Endpoint::CategoryGroup.new(id).get
+      end
+
     end
   end
 end

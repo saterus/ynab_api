@@ -12,5 +12,13 @@ module YnabApi
       Endpoint::Accounts.new(budget_id).get
     end
 
+    def categories(budget_id)
+      Endpoint::Categories.new(budget_id).get
+    end
+
+    def category(budget_id, category_id)
+      Endpoint::Category.new(budget_id, category_id).get
+    end
+
   end
 end
