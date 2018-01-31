@@ -14,6 +14,11 @@ module YnabApi
         @last_month = response_hash["last_month"]
       end
 
+      def accounts(reload = false)
+        @accounts = nil if reload
+        @accounts ||= Endpoint::Accounts.new(id).get
+      end
+
     end
   end
 end

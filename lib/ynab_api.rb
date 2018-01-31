@@ -1,7 +1,9 @@
 require "ynab_api/client"
 require "ynab_api/configuration"
 require "ynab_api/connection"
+require "ynab_api/data/account"
 require "ynab_api/data/budget"
+require "ynab_api/endpoint/accounts"
 require "ynab_api/endpoint/budgets"
 require "ynab_api/version"
 
