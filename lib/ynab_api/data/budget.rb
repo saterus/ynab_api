@@ -12,6 +12,7 @@ module YnabApi
         @currency_format = response_hash["currency_format"]
         @first_month = response_hash["first_month"]
         @last_month = response_hash["last_month"]
+        @month_details = {}
       end
 
       def accounts(reload = false)
@@ -22,6 +23,16 @@ module YnabApi
       def category_groups(reload = false)
         @category_groups = nil if reload
         @category_groups ||= Endpoint::CategoryGroup.new(id).get
+      end
+
+      def months(reload = false)
+        @months = nil if reload
+        @months ||= Endpoint::Months.new(id).get
+      end
+
+      def month(month, reload = false)
+        @month_details.delete(month) if reload
+        @month_details[month] ||= Endpoint::Month.new(id, month).get
       end
 
     end

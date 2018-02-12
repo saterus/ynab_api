@@ -6,10 +6,13 @@ require "ynab_api/data/budget"
 require "ynab_api/data/category"
 require "ynab_api/data/category_group"
 require "ynab_api/data/money"
+require "ynab_api/data/month"
 require "ynab_api/endpoint/accounts"
 require "ynab_api/endpoint/budgets"
 require "ynab_api/endpoint/categories"
 require "ynab_api/endpoint/category"
+require "ynab_api/endpoint/month"
+require "ynab_api/endpoint/months"
 require "ynab_api/version"
 
 module YnabApi
