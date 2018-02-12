@@ -32,5 +32,13 @@ module YnabApi
       Endpoint::Month.new(budget_id, month).get
     end
 
+    def transactions(budget_id, opts = {})
+      Endpoint::Transactions.new(budget_id).get(**opts)
+    end
+
+    def transaction(budget_id, transaction_id)
+      Endpoint::Transactions.new(budget_id, transaction_id).get
+    end
+
   end
 end

@@ -15,24 +15,29 @@ module YnabApi
         @month_details = {}
       end
 
-      def accounts(reload = false)
+      def accounts(reload: false)
         @accounts = nil if reload
         @accounts ||= Endpoint::Accounts.new(id).get
       end
 
-      def category_groups(reload = false)
+      def category_groups(reload: false)
         @category_groups = nil if reload
         @category_groups ||= Endpoint::CategoryGroup.new(id).get
       end
 
-      def months(reload = false)
+      def months(reload: false)
         @months = nil if reload
         @months ||= Endpoint::Months.new(id).get
       end
 
-      def month(month, reload = false)
+      def month(month, reload: false)
         @month_details.delete(month) if reload
         @month_details[month] ||= Endpoint::Month.new(id, month).get
+      end
+
+      def transactions(reload: false, **opts)
+        @transactions = nil if reload
+        @transactions ||= Endpoint::Transactions.new(id).get(**opts)
       end
 
     end
