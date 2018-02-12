@@ -11,7 +11,7 @@ module YnabApi
         @on_budget = response_hash["on_budget"]
         @closed = response_hash["closed"]
         @note = response_hash["note"]
-        @balance = response_hash["balance"]
+        @balance = Money.from_api_value(response_hash["balance"])
       end
 
     end

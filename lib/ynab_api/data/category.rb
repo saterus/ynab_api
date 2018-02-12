@@ -12,9 +12,9 @@ module YnabApi
         @name = response_hash["name"]
         @hidden = response_hash["hidden"]
         @note = response_hash["note"]
-        @budgeted = response_hash["budgeted"]
-        @activity = response_hash["activity"]
-        @balance = response_hash["balance"]
+        @budgeted = Money.from_api_value(response_hash["budgeted"])
+        @activity = Money.from_api_value(response_hash["activity"])
+        @balance = Money.from_api_value(response_hash["balance"])
       end
 
     end
