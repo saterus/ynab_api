@@ -10,6 +10,7 @@ Dotenv.load!
 
 YnabApi.configure do |c|
   c.api_key = ENV['YNAB_API_KEY']
+  c.verbose_http_logging = ARGV.include?("-v")
 end
 
 Pry.start

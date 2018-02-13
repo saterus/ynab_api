@@ -21,6 +21,11 @@ module YnabApi
         # TODO: write middleware to handle errors
         # f.response :api_errors
         f.response :json
+        if YnabApi.config.verbose_http_logging
+          f.response :logger, nil, bodies: { request: true, response: true }
+        else
+          f.response :logger
+        end
 
         f.adapter Faraday.default_adapter
       end
