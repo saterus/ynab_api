@@ -1,6 +1,10 @@
 module YnabApi
   module Endpoint
     class Transactions
+      TransactionPayload = Struct.new(
+        :id, :account_id, :date, :amount, :payee_id, :payee_name, :category_id, :memo,
+        :cleared, :approved, :flag_color
+      )
 
       def initialize(budget_id)
         @budget_id = budget_id
@@ -15,6 +19,35 @@ module YnabApi
         end
         response.body["data"]["transactions"].map do |transaction|
           Data::Transaction.new(transaction)
+        end
+      end
+
+      def post(transaction_payload)
+        response = @connection.post("/v1/budgets/#{@budget_id}/transactions", transaction: transaction_payload.to_h)
+        Data::Transaction.new(response.body["data"]["transaction"])
+      end
+
+      def build_transaction
+        TransactionPayload.new
+      end
+
+      def put(transaction_payload)
+        response = @connection.put("/v1/budgets/#{@budget_id}/transactions/#{transaction_payload.id}", transaction: transaction_payload.to_h)
+        Data::Transaction.new(response.body["data"]["transaction"])
+      end
+
+      def payload_from_transaction(transaction)
+        TransactionPayload.new.tap do |p|
+          p.id = transaction.id
+          p.account_id = transaction.account_id
+          p.date = transaction.date
+          p.amount = transaction.amount
+          p.payee_id = transaction.payee_id
+          p.category_id = transaction.category_id
+          p.memo = transaction.memo
+          p.cleared = transaction.cleared
+          p.approved = transaction.approved
+          p.flag_color = transaction.flag_color
         end
       end
 
