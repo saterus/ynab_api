@@ -10,9 +10,7 @@ module YnabApi
 
       def get
         response = @connection.get("/v1/budgets/#{@budget_id}/categories/#{@category_id}")
-        response.body["data"]["category"].map do |hsh|
-          Data::Category.new(hsh)
-        end
+        Data::Category.new(response.body["data"]["category"])
       end
 
     end
